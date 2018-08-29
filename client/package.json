@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/recompose": "^0.26.4",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
     "babel-preset-env": "^1.7.0",
@@ -21,6 +22,8 @@
     "webpack-dev-server": "^3.1.5"
   },
   "dependencies": {
+    "@types/mapbox": "^1.6.37",
+    "@types/mapbox-gl": "^0.47.2",
     "@types/react": "^16.4.11",
     "@types/react-dom": "^16.0.7",
     "apollo-boost": "^0.1.14",
@@ -31,10 +34,12 @@
     "emotion": "^9.2.8",
     "graphql": "^0.13.2",
     "graphql-tag": "^2.9.2",
+    "mapbox-gl": "^0.48.0",
     "react": "^16.4.2",
     "react-apollo": "^2.1.11",
     "react-dom": "^16.4.2",
     "react-emotion": "^9.2.8",
+    "recompose": "^0.29.0",
     "style-loader": "^0.22.1",
     "ts-loader": "^4.5.0",
     "typescript": "^3.0.1"

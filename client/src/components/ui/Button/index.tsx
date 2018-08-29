@@ -2,11 +2,9 @@ import * as React from 'react';
 
 import styled from 'react-emotion'
 
-export default styled('button')`
+export const Button = styled('button')`
   display: inline-block;
   border: none;
-  border-radius: 5px;
-  padding: 1rem 2rem;
   margin: 0;
   text-decoration: none;
   background: #0069ed;
@@ -21,6 +19,9 @@ export default styled('button')`
   &:focus {
     background: #0053ba;
   }
+
+  padding: 1rem 2rem;
+  border-radius: 5px;
   
   &:focus {
     outline: 0;
@@ -31,3 +32,12 @@ export default styled('button')`
     transform: scale(0.99);
   }
 `;
+
+export const NavButton = styled(Button)`
+  padding: 5px 10px;
+  border-radius: 3px;
+  font-size: 12px;
+`;
+
+
+export default Button;

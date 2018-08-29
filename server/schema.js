@@ -19,6 +19,7 @@ const typeDefs = `
   }
 
   type Query {
+    currentUser: User
     user(id: String!): User
     users: [User]
     meeting(id: String!): Meeting
@@ -28,6 +29,9 @@ const typeDefs = `
 
 const resolvers = {
   Query: {
+    currentUser(root, args, context, info) {
+      return users[0];
+    },
     user(root, args, context, info) {
       return users.filter(user => user.id === args.id)[0];
     },

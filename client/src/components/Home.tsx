@@ -1,29 +1,59 @@
 import * as React from 'react';
-import Button from './ui/Button';
+import { NavButton } from '@src/components/ui/Button';
 
 import styled from 'react-emotion'
 import Meetings from './Meetings';
+import { pure } from 'recompose';
 
-const Home = styled('div')`
-  padding: 8px;
+const Container = styled('div')`
+  background-color: #E55812;
 `;
 
-const TopPanelContainer = styled('div')`
-  height: 100px;
+const NavBarContainer = styled('div')`
   display: flex;
   align-items: center;
   justify-content: center;
+  background: #002626;
+  height: 48px;
 `;
 
-const TopPanel = () => {
-  return <TopPanelContainer>
-    <Button>Log in to use all stuff</Button>
-  </TopPanelContainer>;
+const AppName = styled('h2')`
+  color: #EFE7DA;
+  font-size: 1.6rem;
+`;
+
+interface INavBar {
 }
 
-export default () => {
-  return <Home>
-    <TopPanel />
-    <Meetings />
-  </Home>
+interface INavBarCol {
+  toright?: boolean;  
+}
+
+const NavBarCol = styled('div')`
+  flex: 1;
+  display: flex;
+  padding: 16px;
+  justify-content: ${(props: INavBarCol) => props.toright ? 'flex-end' : 'flex-start'}
+`;
+
+
+const NavBar = pure((props: INavBar) => {
+  return <NavBarContainer>
+    <NavBarCol>
+      <AppName>Meet App</AppName>
+    </NavBarCol>
+    <NavBarCol toright>
+      <NavButton>Log in to use all stuff</NavButton>
+    </NavBarCol>
+  </NavBarContainer>;
+});
+
+
+export default class Home extends React.Component<{}, {counter: number}> {
+  render() {
+    return <Container>
+      <NavBar />
+      <Meetings />
+    </Container>;
+  }
 };
