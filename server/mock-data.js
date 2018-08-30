@@ -26,7 +26,7 @@ export const users = generate({gen: i => {
 });
 
 export const meetings = generate({
-  size: 10,
+  size: 30,
   gen: i => {
     const {item, index} = getRandomFromArray(users);
     const location = 'Street number ' + i;

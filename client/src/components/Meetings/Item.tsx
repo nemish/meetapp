@@ -1,13 +1,13 @@
 import * as React from 'react';
 import gql from "graphql-tag";
-import { Text } from '@src/components/ui/Typography';
+import { Text } from '@ui/Typography';
 import {
   pure,
   compose,
   withState,
   withHandlers,
 } from 'recompose';
-import Map from '@src/components/ui/Map';
+import Map from '@ui/Map';
 
 import styled from 'react-emotion'
 

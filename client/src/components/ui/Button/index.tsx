@@ -2,12 +2,16 @@ import * as React from 'react';
 
 import styled from 'react-emotion'
 
+interface IButton {
+  type?: string;
+}
+
 export const Button = styled('button')`
   display: inline-block;
   border: none;
   margin: 0;
   text-decoration: none;
-  background: #0069ed;
+  background: ${(props: IButton) => props.type === 'danger' ? '#f24a37' : '#0069ed' };
   color: #ffffff;
   font-family: sans-serif;
   font-size: 1rem;
@@ -17,7 +21,7 @@ export const Button = styled('button')`
               transform 150ms ease;
   &:hover,
   &:focus {
-    background: #0053ba;
+    background: ${(props: IButton) => props.type === 'danger' ? '#e33d2a' : '#0053ba' };
   }
 
   padding: 1rem 2rem;
@@ -33,7 +37,7 @@ export const Button = styled('button')`
   }
 `;
 
-export const NavButton = styled(Button)`
+export const SmallButton = styled(Button)`
   padding: 5px 10px;
   border-radius: 3px;
   font-size: 12px;

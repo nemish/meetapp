@@ -1,0 +1,20 @@
+{
+  "name": "meetapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "concurrently -n js \"cd client && npm start\" \"cd server && npm run dev\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nemish/meetapp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nemish/meetapp/issues"
+  },
+  "homepage": "https://github.com/nemish/meetapp#readme"
+}

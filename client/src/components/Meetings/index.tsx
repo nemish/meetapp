@@ -7,7 +7,7 @@ import { pure } from 'recompose';
 import styled from 'react-emotion'
 
 const MeetingsContainer = styled('div')`
-  padding: 16px;
+  padding: 0;
 `;
 
 const MeetingsQuery = gql`
