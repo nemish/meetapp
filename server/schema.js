@@ -1,6 +1,6 @@
-import { gql } from 'apollo-server-express';
-import { makeExecutableSchema } from 'graphql-tools';
-import { users, meetings } from './mock-data';
+import { gql } from "apollo-server-express";
+import { makeExecutableSchema } from "graphql-tools";
+import { users, meetings } from "./mock-data";
 
 const typeDefs = `
   type User {
@@ -11,7 +11,8 @@ const typeDefs = `
 
   type Meeting {
     id: String
-    name: String,
+    name: String
+    description: String
     creator: User
     members: [User]
     location: String
@@ -33,13 +34,13 @@ const resolvers = {
       return users[0];
     },
     user(root, args, context, info) {
-      return users.filter(user => user.id === args.id)[0];
+      return users.filter((user) => user.id === args.id)[0];
     },
     users() {
       return users;
     },
     meeting(root, args, context, info) {
-      return meetings.filter(meeting => meeting.id === args.id)[0];
+      return meetings.filter((meeting) => meeting.id === args.id)[0];
     },
     meetings() {
       return meetings;
@@ -47,4 +48,4 @@ const resolvers = {
   }
 };
 
-export default makeExecutableSchema({typeDefs, resolvers});
+export default makeExecutableSchema({ typeDefs, resolvers });

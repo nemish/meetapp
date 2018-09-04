@@ -1,12 +1,7 @@
-import * as React from 'react';
-import styled from 'react-emotion'
-import { SmallButton } from '@ui/Button';
-import {
-  pure,
-  compose,
-  withState,
-  withHandlers,
-} from 'recompose';
+import * as React from "react";
+import styled from "react-emotion";
+import { SmallButton } from "@ui/Button";
+import { pure, compose, withState, withHandlers } from "recompose";
 
 interface IModal {
   show: boolean;
@@ -19,11 +14,12 @@ interface IModalContainer {
   show: boolean;
 }
 
-const ModalContainer = styled('div')`
+const ModalContainer = styled("div")`
   position: fixed;
-  display: ${(props: IModalContainer) => props.show ? 'flex' : 'none'};
+  display: ${(props: IModalContainer) => (props.show ? "flex" : "none")};
   z-index: 2;
-  background: #83b787;
+  // background: #83b787;
+  background: #fff;
   top: 0;
   left: 0;
   bottom: 0;
@@ -38,18 +34,23 @@ const CloseButton = styled(SmallButton)`
 `;
 
 export const withModal = compose(
-  withState('show', 'toggle', false),
+  withState("show", "toggle", false),
   withHandlers({
-    onToggle: (props: {show: boolean, toggle(isShow : boolean): any}) => () => props.toggle(!props.show)
+    onToggle: (props: { show: boolean; toggle(isShow: boolean): any }) => () =>
+      props.toggle(!props.show)
   })
 );
 
-const Modal = ({show, onToggle, renderHeader, renderBody}: IModal) => {
-  return <ModalContainer show={show}>
-    <CloseButton type="danger" onClick={onToggle}>Close</CloseButton>
-    {renderHeader && renderHeader()}
-    {renderBody && renderBody()}
-  </ModalContainer>
+const Modal = ({ show, onToggle, renderHeader, renderBody }: IModal) => {
+  return (
+    <ModalContainer show={show}>
+      <CloseButton type="danger" onClick={onToggle}>
+        Close
+      </CloseButton>
+      {renderHeader && renderHeader()}
+      {renderBody && renderBody()}
+    </ModalContainer>
+  );
 };
 
 export default Modal;

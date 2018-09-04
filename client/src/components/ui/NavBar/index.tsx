@@ -70,7 +70,7 @@ const Input = styled('input')`
   }
 `;
 
-const renderBody = () => {
+const LoginForm = () => {
   return <FormContainer>
     <FormTitle>Sign in or Register</FormTitle>
     <Form>
@@ -90,7 +90,7 @@ const NavBar = (props: JSX.Element & INavBar) => {
     <NavBarCol toright>
       <SmallButton onClick={onToggle}>Log in to use all stuff</SmallButton>
     </NavBarCol>
-    <Modal renderBody={renderBody} {...props} />
+    <Modal renderBody={LoginForm} {...props} />
   </NavBarContainer>;
 }
 
