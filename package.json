@@ -19,5 +19,8 @@
   "homepage": "https://github.com/nemish/meetapp#readme",
   "devDependencies": {
     "concurrently": "^4.0.1"
+  },
+  "dependencies": {
+    "informed": "^1.10.4"
   }
 }

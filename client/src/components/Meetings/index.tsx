@@ -3,16 +3,10 @@ import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import { css } from "emotion";
 import Meeting, { MEETING_FRAGMENT } from "@src/components/Meetings/Item";
-import { pure } from "recompose";
+import { pure, compose, lifecycle, withState } from "recompose";
 import { getRandomInt } from "@src/utils";
 
 import styled from "react-emotion";
-
-const MeetingsContainer = styled("div")`
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-`;
 
 const MeetingsQuery = gql`
   query GetMeetings {
@@ -28,36 +22,13 @@ interface IMeeting {
   name: string;
   description: string;
 }
-const GRID_MIN = 8 * 10;
+// const GRID_MIN = 8 * 10;
 
-const gridWidth = () => {
-  return (
-    Math.floor(getRandomInt(GRID_MIN, GRID_MIN * getRandomInt(1, 4)) / 16) * 16
-  );
-};
-
-export const splitItemsList = (items: IMeeting[], config?: any) => {
-  const chunks = [];
-  const { size = 3, random = false } = config || {};
-  let current = 0;
-  let chunkSize = size;
-  if (random) {
-    chunkSize = getRandomInt(1, size);
-  }
-  while (current < items.length) {
-    chunks.push(items.slice(current, current + chunkSize));
-    current += chunkSize;
-    if (random) {
-      chunkSize = getRandomInt(1, size);
-    }
-  }
-  return chunks;
-};
-
-const MeetingsWrapper = styled("div")`
-  flex-basis: 100%;
-  display: flex;
-`;
+// const gridWidth = () => {
+//   return (
+//     Math.floor(getRandomInt(GRID_MIN, GRID_MIN * getRandomInt(1, 4)) / 16) * 16
+//   );
+// };
 
 const Meetings = pure(() => (
   <Query query={MeetingsQuery}>
@@ -65,22 +36,11 @@ const Meetings = pure(() => (
       if (loading) return <p>Loading...</p>;
       if (error) return <p>Error :(</p>;
 
-      console.log("meetings", data.meetings);
-      const meetings = splitItemsList(data.meetings, {
-        random: true,
-        size: 4
-      }).map((items: IMeeting[], index: number) => {
-        return (
-          <MeetingsWrapper key={index}>
-            {items.map((props: IMeeting, i: number) => {
-              return <Meeting key={props.id} {...props} />;
-            })}
-          </MeetingsWrapper>
-        );
-        return;
+      const meetings = data.meetings.map((props: IMeeting, i: number) => {
+        return <Meeting key={props.id} size={getRandomInt(1, 2)} {...props} />;
       });
 
-      return <MeetingsContainer>{meetings}</MeetingsContainer>;
+      return <React.Fragment>{meetings}</React.Fragment>;
     }}
   </Query>
 ));

@@ -2,6 +2,7 @@ import * as React from "react";
 import styled from "react-emotion";
 import { SmallButton } from "@ui/Button";
 import { pure, compose, withState, withHandlers } from "recompose";
+import { setModalShow } from "@src/utils/event";
 
 interface IModal {
   show: boolean;
@@ -18,7 +19,6 @@ const ModalContainer = styled("div")`
   position: fixed;
   display: ${(props: IModalContainer) => (props.show ? "flex" : "none")};
   z-index: 2;
-  // background: #83b787;
   background: #fff;
   top: 0;
   left: 0;
@@ -36,8 +36,13 @@ const CloseButton = styled(SmallButton)`
 export const withModal = compose(
   withState("show", "toggle", false),
   withHandlers({
-    onToggle: (props: { show: boolean; toggle(isShow: boolean): any }) => () =>
-      props.toggle(!props.show)
+    onToggle: (props: {
+      show: boolean;
+      toggle(isShow: boolean): any;
+    }) => () => {
+      props.toggle(!props.show);
+      setModalShow(!props.show);
+    }
   })
 );
 

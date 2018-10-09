@@ -4,6 +4,8 @@ import styled from "react-emotion";
 
 interface IButton {
   type?: string;
+  full?: boolean;
+  disabled?: boolean;
 }
 
 export const PureButton = styled("button")`
@@ -12,8 +14,8 @@ export const PureButton = styled("button")`
   margin: 0;
   text-decoration: none;
   font-family: "Lato", sans-serif;
-  backround: none;
-  font-size: 1rem;
+  background: none;
+  font-size: 12px;
   cursor: pointer;
   text-align: center;
   &:hover,
@@ -30,7 +32,10 @@ export const Button = styled(PureButton)`
   background: ${(props: IButton) =>
     props.type === "danger" ? "#f24a37" : "#0069ed"};
   color: #ffffff;
-  transition: background 250ms ease-in-out, transform 150ms ease;
+  ${(props: IButton) =>
+    props.full &&
+    "width: 100%;"} transition: background 250ms ease-in-out, transform 150ms ease;
+
   &:hover,
   &:focus {
     background: ${(props: IButton) =>
@@ -48,12 +53,22 @@ export const Button = styled(PureButton)`
   &:active {
     transform: scale(0.99);
   }
+  ${(props: IButton) =>
+    props.disabled &&
+    `
+    cursor: no-drop;
+    background: #ccc;
+  `};
 `;
 
 export const SmallButton = styled(Button)`
   padding: 5px 10px;
   border-radius: 3px;
   font-size: 12px;
+`;
+
+export const BigButton = styled(Button)`
+  font-size: 16px;
 `;
 
 export default Button;
